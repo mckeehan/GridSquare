@@ -1,5 +1,6 @@
 # GridSquare
 
+A collection of utilities to read from gpsd and translate between GridSquare and Latitude/Longitude.
 
 ## ReadGPS.c
 
