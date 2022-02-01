@@ -1,4 +1,5 @@
 // Client side implementation of UDP client-server model
+// see https://www.geeksforgeeks.org/udp-server-client-implementation-c/
 #include <stdio.h>
 #include <stdlib.h>
 #include <unistd.h>
