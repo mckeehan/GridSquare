@@ -20,7 +20,7 @@ int main() {
     /* wait for 5 seconds to receive data */
     if (gps_waiting (&gps_data, 5000000)) {
       /* read data */
-      if ((rc = gps_read(&gps_data)) == -1) {
+      if ((rc = gps_read(&gps_data, NULL, 0)) == -1) {
         printf("error occured reading gps data. code: %d, reason: %s\n", rc, gps_errstr(rc));
       } else {
         /* Display data from the GPS receiver. */
