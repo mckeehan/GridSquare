@@ -10,3 +10,4 @@ TuneAndTune.sh
 ReadGPSdaemon
 UDPClient
 UDPServer
+golang/readgps
