@@ -5,6 +5,7 @@ using namespace std;
 
 /**
  * Calculations from http://n1sv.com/PROJECTS/How%20to%20calculate%20your%208-digit%20grid%20square.pdf
+ * http://www.w8bh.net/grid_squares.pdf
  */
 
 void usage(char *name);
@@ -12,7 +13,7 @@ void calcLocator(char *dst, double lat, double lon);
 
 int main( int argc, char *argv[], char *envp[] )
 {
-  char dst[10];
+  char dst[12];
   double lat, lon;
 
   if( argc != 3 ) usage(argv[0]);
@@ -36,8 +37,8 @@ void usage(char *name)
 
 void calcLocator(char *dst, double lat, double lon)
 {
-  int o1, o2, o3, o4;
-  int a1, a2, a3, a4;
+  int o1, o2, o3, o4, o5;
+  int a1, a2, a3, a4, a5;
   double remainder;
   double oneTwelfth = 1.0/12.0;
   double oneTwentyFourth = 1.0/24.0;
@@ -51,6 +52,9 @@ void calcLocator(char *dst, double lat, double lon)
   o3 = (int)(remainder / oneTwelfth);
   remainder = remainder - oneTwelfth * (double)o3;
   o4 = (int)(remainder/(oneTwelfth/10));
+  remainder = remainder - (o4 / 120.0);
+  o5 = (int)(remainder * 2880);
+
 
   // latitude
   remainder = lat + 90.0;
@@ -61,6 +65,8 @@ void calcLocator(char *dst, double lat, double lon)
   a3 = (int)(remainder / oneTwentyFourth);
   remainder = remainder - oneTwentyFourth * (double)a3;
   a4 = (int)(remainder / (oneTwentyFourth/10));
+  remainder = remainder - (a4 / 240.0);
+  a5 = (int)(remainder * 5760);
 
   dst[0] = (char)o1 + 'A';
   dst[1] = (char)a1 + 'A';
@@ -70,6 +76,8 @@ void calcLocator(char *dst, double lat, double lon)
   dst[5] = (char)a3 + 'a';
   dst[6] = (char)o4 + '0';
   dst[7] = (char)a4 + '0';
-  dst[8] = (char)0;
+  dst[8] = (char)o5 + 'A';
+  dst[9] = (char)a5 + 'A';
+  dst[10] = (char)0;
 }
 
